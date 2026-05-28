@@ -2,6 +2,8 @@ workflows:
   default-workflow:
     name: Build APK Métodos Numéricos
     instance_type: mac_mini_m1
+    environment:
+      flutter: 3.22.0
     scripts:
       - name: Construir APK
         script: |
