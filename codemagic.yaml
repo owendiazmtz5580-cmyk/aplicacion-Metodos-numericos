@@ -1,1 +1,14 @@
-
+workflows:
+  default-workflow:
+    name: Build APK Métodos Numéricos
+    instance_type: mac_mini_m1
+    scripts:
+      - name: Construir APK
+        script: |
+          flutter create . --overwrite --offline
+          mkdir -p lib
+          mv main.dart lib/main.dart
+          flutter pub get
+          flutter build apk --release
+    artifacts:
+      - build/app/outputs/flutter-apk/*.apk
