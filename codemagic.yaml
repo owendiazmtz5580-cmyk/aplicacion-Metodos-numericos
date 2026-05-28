@@ -11,14 +11,17 @@ workflows:
     scripts:
       - name: Inicializar entorno Flutter y crear carpetas Android
         script: |
-          mkdir -p lib
-          mv main.dart lib/main.dart
+          # 1. Creamos la estructura base nativa primero
           flutter create . --overwrite --offline
+          
+          # 2. Obligamos a crear la carpeta lib si no existe
+          mkdir -p lib
+          
+          # 3. Al puro final, movemos TU main.dart real para destruir la plantilla fea
+          mv main.dart lib/main.dart
       - name: Conseguir dependencias de Flutter
         script: |
           flutter pub get
       - name: Construir el archivo APK de Android
         script: |
           flutter build apk --release
-    artifacts:
-      - build/app/outputs/flutter-apk/app-release.apk
